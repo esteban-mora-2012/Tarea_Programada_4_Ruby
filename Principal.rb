@@ -76,9 +76,18 @@ post '/buscar_fotos' do
 		$Flickr.asigna_imagen_s()
 		redirect  '/ventana_foto'
 	elsif($numero == 0 or $numero == "")
-		$numero = $param_numero
-	elsif($numero >= 30)
+		$Flickr.obtener_recientes($param_numero)
+		$Flickr.obtener_info()
+		$Flickr.presentar_info()
+		$Flickr.asigna_imagen_s()
+		redirect  '/ventana_foto'
+	elsif($numero > 30)
 		$numero = 30
+		$Flickr.obtener_fotos($descrip, $numero)
+		$Flickr.obtener_info()
+		$Flickr.presentar_info()
+		$Flickr.asigna_imagen_s()
+		redirect  '/ventana_foto'
 	else
 		$Flickr.obtener_fotos($descrip, $numero)
 		$Flickr.obtener_info()
