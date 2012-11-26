@@ -80,13 +80,12 @@ post '/buscar_fotos' do
 	elsif($numero >= 30)
 		$numero = 30
 	else
-		puts "Los parametros contienen errores"
+		$Flickr.obtener_fotos($descrip, $numero)
+		$Flickr.obtener_info()
+		$Flickr.presentar_info()
+		$Flickr.asigna_imagen_s()
+		redirect  '/ventana_foto'
 	end
-	$Flickr.obtener_fotos($descrip, $numero)
-	$Flickr.obtener_info()
-	$Flickr.presentar_info()
-	$Flickr.asigna_imagen_s()
-	redirect  '/ventana_foto'
 end
 
 #Metodo para solicitar cargar la siguiente imagen
